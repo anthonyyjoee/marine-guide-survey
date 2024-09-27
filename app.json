@@ -4,11 +4,10 @@
     "slug": "marine-guide-survey",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
+    "icon": "./src/assets/smallAnchor.png",
+    "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./src/assets/white.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,20 +16,31 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/anchor.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.marine.guidesurvey"
     },
     "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/favicon.png"
+    },
+    "androidStatusBar": {
+      "translucent": true
     },
     "plugins": [
-      "expo-router"
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
     ],
-    "experiments": {
-      "typedRoutes": true
+    "extra": {
+      "eas": {
+        "projectId": "53070918-fba4-4bc2-b59b-77ada31176b3"
+      }
     }
   }
 }

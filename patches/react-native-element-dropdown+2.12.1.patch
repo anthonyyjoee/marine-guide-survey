@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-element-dropdown/src/components/MultiSelect/index.tsx b/node_modules/react-native-element-dropdown/src/components/MultiSelect/index.tsx
+index 65cfd55..4bb7bd4 100644
+--- a/node_modules/react-native-element-dropdown/src/components/MultiSelect/index.tsx
++++ b/node_modules/react-native-element-dropdown/src/components/MultiSelect/index.tsx
+@@ -733,7 +733,7 @@ const MultiSelectComponent: <T>(
+                     itemAccessibilityLabelField || labelField
+                   )}
+                   key={_get(e, labelField)}
+-                  onPress={() => unSelect(e)}
++                  // onPress={() => unSelect(e)}
+                 >
+                   {renderSelectedItem(e, () => {
+                     unSelect(e);

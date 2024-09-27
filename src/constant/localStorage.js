@@ -1,0 +1,4 @@
+export const LS_KEYS = {
+  AUTH_TOKEN_KEY: "ACCESS_TOKEN",
+  USER_DETAILS_KEY: "USER_DATA",
+};

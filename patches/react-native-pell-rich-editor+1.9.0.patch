@@ -1,0 +1,62 @@
+diff --git a/node_modules/react-native-pell-rich-editor/src/RichToolbar.js b/node_modules/react-native-pell-rich-editor/src/RichToolbar.js
+index d2d4ac1..4bfc413 100755
+--- a/node_modules/react-native-pell-rich-editor/src/RichToolbar.js
++++ b/node_modules/react-native-pell-rich-editor/src/RichToolbar.js
+@@ -1,5 +1,5 @@
+ import React, {Component} from 'react';
+-import {FlatList, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
++import {Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+ import {actions} from './const';
+ 
+ export const defaultActions = [
+@@ -65,6 +65,12 @@ export default class RichToolbar extends Component {
+     };
+   }
+ 
++  width = Dimensions.get("window").width;
++
++  itemsPerRow = 9;
++
++  itemWidth = this.width / this.itemsPerRow + 0.1;
++
+   shouldComponentUpdate(nextProps, nextState) {
+     let that = this;
+     return (
+@@ -226,7 +232,7 @@ export default class RichToolbar extends Component {
+       <TouchableOpacity
+         key={action}
+         disabled={disabled}
+-        style={[{width: iconGap + iconSize}, styles.item, itemStyle, style]}
++        style={[{width: that.itemWidth, height: that.itemWidth, backgroundColor: selected ? '#DDDCDC' : null}, styles.item, itemStyle, style]}
+         onPress={() => that._onPress(action)}>
+         {icon ? (
+           typeof icon === 'function' ? (
+@@ -257,16 +263,7 @@ export default class RichToolbar extends Component {
+     const vStyle = [styles.barContainer, style, disabled && this._getButtonDisabledStyle()];
+     return (
+       <View style={vStyle}>
+-        <FlatList
+-          horizontal
+-          keyboardShouldPersistTaps={'always'}
+-          keyExtractor={(item, index) => item.action + '-' + index}
+-          data={this.state.data}
+-          alwaysBounceHorizontal={false}
+-          showsHorizontalScrollIndicator={false}
+-          renderItem={({item}) => this._renderAction(item.action, item.selected)}
+-          contentContainerStyle={flatContainerStyle}
+-        />
++        {this.state.data?.map((item) => this._renderAction(item.action, item.selected))}
+         {children}
+       </View>
+     );
+@@ -277,7 +274,9 @@ const styles = StyleSheet.create({
+   barContainer: {
+     height: 44,
+     backgroundColor: '#efefef',
+-    alignItems: 'center',
++    flexDirection: "row",
++    flexWrap: "wrap",
++    justifyContent: "flex-start",
+   },
+ 
+   item: {
